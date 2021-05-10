@@ -39,7 +39,7 @@ class Config(object):
 
     
 
-    REDIRECT_PATH = "/articlecmsproject1.azurewebsites.net/FlaskWebProject/templates/index.html"  # Used to form an absolute URL; must match to app's redirect_uri set in AAD
+    REDIRECT_PATH = "/getAToken"  # Used to form an absolute URL; must match to app's redirect_uri set in AAD
 
     #ENDPOINT = 'https://login.microsoftonline.com/consumers/oauth2/authorize' 
     #ENDPOINT = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize'
