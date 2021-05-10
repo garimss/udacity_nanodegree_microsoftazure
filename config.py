@@ -5,9 +5,11 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret-key'
 
-    CLIENT_ID = "ffe18477-6d0b-4ddf-8e80-1908c4874679"
-   
-    CLIENT_SECRET = "b3D6z_K-25c~Kjj90zYUq1tzmWyH-i_fAZ"
+    #CLIENT_ID = "ffe18477-6d0b-4ddf-8e80-1908c4874679"  # project1ArticleCMS
+    #CLIENT_SECRET = "b3D6z_K-25c~Kjj90zYUq1tzmWyH-i_fAZ" #  project1ArticleCMS
+    
+    CLIENT_ID = "f8897b93-7bfd-4df4-bb93-e2bd9cb34b26" # ArticleCMSUdacity APP
+    CLIENT_SECRET = "0Trf-sfa31X_rCh6go7oGTym0X2v.V6G—" # ArticleCMSUdacity APP
 
     BLOB_ACCOUNT = os.environ.get('BLOB_ACCOUNT') or 'project1articlecms'
     BLOB_STORAGE_KEY = os.environ.get('BLOB_STORAGE_KEY') or 'F+Qf1tYlbE9GM82e77AgD3y7cebw6Hx63apInfX7mnFzOAexIF5OE/ERWP+rWkJ/BYpiwnKMb2QVdETvI58R/A=='
