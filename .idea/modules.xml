@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/udacity_nanodegree_microsoftazure.iml" filepath="$PROJECT_DIR$/.idea/udacity_nanodegree_microsoftazure.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/Udacity_Project1_ArticleCMS.iml" filepath="$PROJECT_DIR$/.idea/Udacity_Project1_ArticleCMS.iml" />
+>>>>>>> 981cf0f7f9d43b78248f5aff19cbcc80d396fb4d
     </modules>
   </component>
 </project>
