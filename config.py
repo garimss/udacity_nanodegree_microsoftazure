@@ -40,7 +40,9 @@ class Config(object):
     REDIRECT_PATH = "/FlaskWebProject/templates/index.html"  # Used to form an absolute URL; must match to app's redirect_uri set in AAD
 
     #ENDPOINT = 'https://login.microsoftonline.com/consumers/oauth2/authorize' 
-    ENDPOINT = "https://login.microsoftonline.com/0ebd8976-160f-42fd-a9bf-92ae762dab79/oauth2/authorize"
+    #ENDPOINT = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize'
+    #ENDPOINT = "https://login.microsoftonline.com/0ebd8976-160f-42fd-a9bf-92ae762dab79/oauth2/authorize"
+    ENDPOINT = ' https://login.microsoftonline.com/0ebd8976-160f-42fd-a9bf-92ae762dab79/v2.0/adminconsent?client_id=f8897b93-7bfd-4df4-bb93-e2bd9cb34b26'
     # You can find the proper permission names from this document
     # https://docs.microsoft.com/en-us/graph/permissions-reference
     SCOPE = ["User.Read"] # Only need to read user profile for this app
