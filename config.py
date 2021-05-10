@@ -39,7 +39,7 @@ class Config(object):
 
     REDIRECT_PATH = "/FlaskWebProject/templates/index.html"  # Used to form an absolute URL; must match to app's redirect_uri set in AAD
 
-    ENDPOINT = 'https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize'#'https://graph.microsoft.com/v1.0/users' 
+    ENDPOINT = 'https://login.microsoftonline.com/consumers/v2.0/.well-known/openid-configuration' 
     #ENDPOINT = "https://login.microsoftonline.com/0ebd8976-160f-42fd-a9bf-92ae762dab79/oauth2/authorize"
     # You can find the proper permission names from this document
     # https://docs.microsoft.com/en-us/graph/permissions-reference
