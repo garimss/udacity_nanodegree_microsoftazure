@@ -5,9 +5,9 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret-key'
 
-    CLIENT_ID = "5657fbef-2a5a-4f7b-b0b7-15ceb5227833"
+    CLIENT_ID = "f8897b93-7bfd-4df4-bb93-e2bd9cb34b26"
    
-    CLIENT_SECRET = "52Y5._cK5cSSOsq3tTVNLG..J36C2.JH0x"
+    CLIENT_SECRET = "0Trf-sfa31X_rCh6go7oGTym0X2v.V6G--"
 
     BLOB_ACCOUNT = os.environ.get('BLOB_ACCOUNT') or 'project1articlecms'
     BLOB_STORAGE_KEY = os.environ.get('BLOB_STORAGE_KEY') or 'F+Qf1tYlbE9GM82e77AgD3y7cebw6Hx63apInfX7mnFzOAexIF5OE/ERWP+rWkJ/BYpiwnKMb2QVdETvI58R/A=='
