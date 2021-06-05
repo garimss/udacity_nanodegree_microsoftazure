@@ -1,3 +1,4 @@
+if __name__ == '__main__':
 
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired

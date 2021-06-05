@@ -86,7 +86,6 @@ def login():
             app.logger.warning('A warning occurred')
             app.logger.error('An error occurred')
             app.logger.info('Info')
-            app.logger.INFO('Info')
         return redirect(next_page)
     session["state"] = str(uuid.uuid4())
     auth_url = _build_auth_url(scopes=Config.SCOPE, state=session["state"])
