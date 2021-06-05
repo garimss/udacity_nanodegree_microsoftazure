@@ -13,6 +13,8 @@ from flask_login import current_user, login_user, logout_user, login_required
 from FlaskWebProject.models import User, Post
 import msal
 import uuid
+import logging
+from logging import Formatter, FileHandler
 
 imageSourceUrl = 'https://'+ app.config['BLOB_ACCOUNT']  + '.blob.core.windows.net/' + app.config['BLOB_CONTAINER']  + '/'
 
@@ -61,6 +63,21 @@ def post(id):
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    #setup logger
+    file_handler = FileHandler('output.log')
+    handler = logging.StreamHandler()
+    file_handler.setLevel(logging.DEBUG)
+    handler.setLevel(logging.DEBUG)
+    file_handler.setFormatter(Formatter(
+        '%(asctime)s %(levelname)s: %(message)s '
+        '[in %(pathname)s:%(lineno)d]'
+     ))
+    handler.setFormatter(Formatter(
+        '%(asctime)s %(levelname)s: %(message)s '
+        '[in %(pathname)s:%(lineno)d]'
+     ))
+    app.logger.addHandler(handler)
+    app.logger.addHandler(file_handler)
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = LoginForm()
