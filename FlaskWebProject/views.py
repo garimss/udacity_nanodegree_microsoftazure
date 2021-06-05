@@ -62,8 +62,6 @@ def post(id):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        flash('Login Successful')
-        app.logger.info('Login Successful')
         return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
@@ -74,9 +72,10 @@ def login():
             app.logger.error('Invalid username or password')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
-        app.logger.info('login successful: User logged in, {}'.format(form.username.data))
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
+            #app.logger.info('login successful: User logged in, {}'.format(form.username.data))
+            app.logger.info('Login successful')
             next_page = url_for('home')
             #app.logger.info('Login successful')
         return redirect(next_page)
