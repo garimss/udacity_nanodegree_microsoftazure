@@ -18,6 +18,8 @@ from logging import Formatter, FileHandler
 
 imageSourceUrl = 'https://'+ app.config['BLOB_ACCOUNT']  + '.blob.core.windows.net/' + app.config['BLOB_CONTAINER']  + '/'
 
+logging.basicConfig(filename='record.log', level=logging.DEBUG, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+
 @app.route('/')
 @app.route('/home')
 @login_required
@@ -64,7 +66,7 @@ def post(id):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        app.logger.debug('Login successful 0')
+        app.logger.info('Login successful 0')
         return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
@@ -78,10 +80,13 @@ def login():
         if not next_page or url_parse(next_page).netloc != '':
             #app.logger.info('login successful: User logged in, {}'.format(form.username.data))
             next_page = url_for('home')
-            logging.basicConfig(filename='record.log', level=logging.DEBUG, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
             app.logger.setLevel(logging.INFO)
             flash('Login successful 1')
             app.logger.debug('Login successful 1')
+            app.logger.warning('A warning occurred')
+            app.logger.error('An error occurred')
+            app.logger.info('Info')
+            app.logger.INFO('Info')
         return redirect(next_page)
     session["state"] = str(uuid.uuid4())
     auth_url = _build_auth_url(scopes=Config.SCOPE, state=session["state"])
