@@ -66,7 +66,6 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        app.logger.info('Login Successful')
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
             app.logger.error('Invalid username or password')
@@ -75,9 +74,9 @@ def login():
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             #app.logger.info('login successful: User logged in, {}'.format(form.username.data))
-            app.logger.info('Login successful')
             next_page = url_for('home')
-            #app.logger.info('Login successful')
+            flash('Login successful')
+            app.logger.info('Login successful')
         return redirect(next_page)
     session["state"] = str(uuid.uuid4())
     auth_url = _build_auth_url(scopes=Config.SCOPE, state=session["state"])
