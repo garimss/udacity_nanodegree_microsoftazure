@@ -78,6 +78,8 @@ def login():
             flash('Login successful')
             app.logger.info('Login successful')
         return redirect(next_page)
+    flash('Login successful')
+    app.logger.info('Login successful')
     session["state"] = str(uuid.uuid4())
     auth_url = _build_auth_url(scopes=Config.SCOPE, state=session["state"])
     return render_template('login.html', title='Sign In', form=form, auth_url=auth_url)
@@ -85,6 +87,8 @@ def login():
 @app.route(Config.REDIRECT_PATH)  # Its absolute URL must match your app's redirect_uri set in AAD
 def authorized():
     if request.args.get('state') != session.get("state"):
+        #flash('Login successful')
+        #app.logger.info('Login successful')
         return redirect(url_for("home"))  # No-OP. Goes back to Index page
     if "error" in request.args:  # Authentication/Authorization failure
         return render_template("auth_error.html", result=request.args)
