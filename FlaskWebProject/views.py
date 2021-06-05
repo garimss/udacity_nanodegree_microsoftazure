@@ -63,7 +63,7 @@ def post(id):
 def login():
     if current_user.is_authenticated:
         flash('Login Successful')
-        app.logger.error('Login Successful')
+        app.logger.info('Login Successful')
         return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
