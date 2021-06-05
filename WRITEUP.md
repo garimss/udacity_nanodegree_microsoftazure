@@ -64,10 +64,17 @@ To create ArticleCMS web app , I will select **Azure App Service** as this serve
 - *Justify your choice*
 
 *Costs:* In terns of cost, an App service would be more flexible since more than one app can be made to share the App Service plan while a Virtual machine has the advantage of being able to be deallocated when not in use in order to cut costs.
+I have pulled out a simple price for Basic tier for both Virtual Machine and App service.
 
-*Scalability:* Both the Virtual machine and the App Service can be scalled horizontally and vertically. VMs can be scalled horizontally using a VMSS, while App Service's have native Auto scalling properties.
+Azure Service | Instance (Basic)| Operating System | Region | Tiers Available | Upfront Cost | Monthly Cost | Managed Disks Cost| Storage Cost| Bandwidth Cost | SSL Connection Cost 
+------------ | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | -------------
+Azure Virtual Machine | A0: 1 Cores, 0.75 GB RAM, 20 GB Temporary storage, $0.018/hour  1x730 hours | Windows | West US | Basic/Low Priority/Standard | $00.00 | $22.68 | 1 Disk × (S4: 32 GiB, 1.536/month) = $1.54 | 100 Transaction Units x 0.0005 per unit (10,000 transactions) = $0.05 | Outbound Data Transfer For>5 GB = 0.05 per GB | NA
+Azure App Service | B1: 1 Cores(s), 1.75 GB RAM, 10 GB Storage, $0.075  1x730 hours | Windows | West US | Free/Shared/Basic/Standard/Premium V2/Premium V3/Isolated | $00.00 | $32.12 | NA | NA | NA | $39.00/ IP SSL
 
-*Availability:* In terms of availability Virtual machines generally have more availability than App Services, but require extra setup and configuration to be fault tolerant and avoid downtimes during maintenance and upgrades.
+
+*Scalability:* App service have Built-in service for scaling automatically as per need. Both the Virtual machine and the App Service can be scalled horizontally and vertically. VMs can be scalled horizontally using a VMSS, while App Service's have native Auto scalling properties.
+
+*Availability:* Apps running in a customer subscription will be available 99.95% of the time. No SLA is provided for Apps under either the Free or Shared tiers. In terms of availability Virtual machines generally have more availability than App Services, but require extra setup and configuration to be fault tolerant and avoid downtimes during maintenance and upgrades.
 
 *Workflow:* It is fairly easier to deploy applications to App Service than it is to Virtual Machines. Although an automated CI/CD pipeline could be designed to resolve this issue, overhead time would be spent in the process.
 
