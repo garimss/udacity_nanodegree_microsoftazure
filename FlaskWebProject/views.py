@@ -75,9 +75,9 @@ def login():
         if not next_page or url_parse(next_page).netloc != '':
             #app.logger.info('login successful: User logged in, {}'.format(form.username.data))
             next_page = url_for('home')
+            flash('Login successful')
+            app.logger.info('Login successful')
         return redirect(next_page)
-    flash('Login successful')
-    app.logger.info('Login successful')
     session["state"] = str(uuid.uuid4())
     auth_url = _build_auth_url(scopes=Config.SCOPE, state=session["state"])
     return render_template('login.html', title='Sign In', form=form, auth_url=auth_url)
