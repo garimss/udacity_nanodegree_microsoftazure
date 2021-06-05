@@ -106,8 +106,9 @@ def authorized():
         # Here, we'll use the admin username for anyone who is authenticated by MS
         user = User.query.filter_by(username="admin").first()
         login_user(user)
-        app.logger.info('%s logged in successfully', user.username)
+        app.logger.info('logged in successfully')
         _save_cache(cache)
+    app.logger.info('logged in successfully2')
     return redirect(url_for('home'))
 
 @app.route('/logout')
