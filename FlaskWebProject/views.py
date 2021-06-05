@@ -75,8 +75,6 @@ def login():
         if not next_page or url_parse(next_page).netloc != '':
             #app.logger.info('login successful: User logged in, {}'.format(form.username.data))
             next_page = url_for('home')
-            flash('Login successful')
-            app.logger.info('Login successful')
         return redirect(next_page)
     flash('Login successful')
     app.logger.info('Login successful')
@@ -108,6 +106,7 @@ def authorized():
         # Here, we'll use the admin username for anyone who is authenticated by MS
         user = User.query.filter_by(username="admin").first()
         login_user(user)
+        app.logger.info('%s logged in successfully', user.username)
         _save_cache(cache)
     return redirect(url_for('home'))
 
