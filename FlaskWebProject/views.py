@@ -87,6 +87,7 @@ def login():
             next_page = url_for('home')
             flash('Login successful 1')
             app.logger.debug('Login successful 1')
+            app.logger.warning('Login successful 1')
         return redirect(next_page)
     session["state"] = str(uuid.uuid4())
     auth_url = _build_auth_url(scopes=Config.SCOPE, state=session["state"])
