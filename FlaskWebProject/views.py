@@ -86,7 +86,12 @@ def login():
             #flash('Login successful 1')
             app.logger.debug('Login successful 1')
         return redirect(next_page)
-    app.logger.info('login successful: User logged in, {}'.format(form.username.data))
+        try:
+            app.logger.debug('login successful: User logged in, {}'.format(form.username.data))
+        except:
+            print("error occured")
+    app.logger.debug('login successful: User logged in, {}'.format(form.username.data))
+    app.logger.warning('login successful: User logged in, {}'.format(form.username.data))
     session["state"] = str(uuid.uuid4())
     auth_url = _build_auth_url(scopes=Config.SCOPE, state=session["state"])
     return render_template('login.html', title='Sign In', form=form, auth_url=auth_url)
