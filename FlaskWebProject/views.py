@@ -81,16 +81,16 @@ def login():
         if not next_page or url_parse(next_page).netloc != '':
             #app.logger.info('login successful: User logged in, {}'.format(form.username.data))
             next_page = url_for('home')
-            app.logger.info('login successful: User logged in, {}'.format(form.username.data))
+            app.logger.warning('login successful: User logged in, {}'.format(form.username.data))
             app.logger.setLevel(logging.INFO)
-            #flash('Login successful 1')
+            flash('Login successful 1')
             app.logger.debug('Login successful 1')
         return redirect(next_page)
         try:
-            app.logger.debug('login successful: User logged in, {}'.format(form.username.data))
+            app.logger.warning('login successful: User logged in, {}'.format(form.username.data))
         except:
-            print("error occured")
-    app.logger.debug('login successful: User logged in, {}'.format(form.username.data))
+            app.logger.error("@@@@@@@@@ @@@@@@@@@ @@@@@@@ error occured @@@@@@@ @@@@@@@ @@@@@@@@@")
+        app.logger.warning('login successful: User logged in')
     app.logger.warning('login successful: User logged in, {}'.format(form.username.data))
     session["state"] = str(uuid.uuid4())
     auth_url = _build_auth_url(scopes=Config.SCOPE, state=session["state"])
