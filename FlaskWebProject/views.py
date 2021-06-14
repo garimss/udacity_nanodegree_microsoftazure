@@ -75,7 +75,7 @@ def login():
             flash('Invalid username or password')
             app.logger.error('Invalid username or password')
             return redirect(url_for('login'))
-        app.logger.info('login successful: User logged in, {}'.format(form.username.data))
+        app.logger.warning('login successful: User logged in, {}'.format(form.username.data))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
@@ -86,10 +86,11 @@ def login():
             flash('Login successful 1')
             app.logger.debug('Login successful 1')
         return redirect(next_page)
-        try:
-            app.logger.warning('login successful: User logged in, {}'.format(form.username.data))
-        except:
-            app.logger.error("@@@@@@@@@ @@@@@@@@@ @@@@@@@ error occured @@@@@@@ @@@@@@@ @@@@@@@@@")
+    try:
+        app.logger.warning('login successful: User logged in, {}'.format(form.username.data))
+    except:
+        app.logger.error("@@@@@@@@@ @@@@@@@@@ @@@@@@@ error occured @@@@@@@ @@@@@@@ @@@@@@@@@")
+    finally:
         app.logger.warning('login successful: User logged in')
     app.logger.warning('login successful: User logged in, {}'.format(form.username.data))
     session["state"] = str(uuid.uuid4())
