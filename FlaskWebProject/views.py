@@ -82,7 +82,7 @@ def login():
         if not next_page or url_parse(next_page).netloc != '':
             app.logger.setLevel(logging.INFO)
             app.logger.info('%s logged in successfully', form.username.data)
-            app.logger.info('%s logged in successfully', user.username.data)
+            app.logger.info('%s logged in successfully', user.username)
             app.logger.info(' logged in successfully', form.username)
             app.logger.info(' logged in successfully', user.username)
             app.logger.warning('login successful: User logged in, {}'.format(form.username.data))
