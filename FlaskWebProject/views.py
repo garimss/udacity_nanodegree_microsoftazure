@@ -66,7 +66,6 @@ def post(id):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        app.logger.info('Login successful 0')
         return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
@@ -75,30 +74,18 @@ def login():
             flash('Invalid username or password')
             app.logger.error('Invalid username or password')
             return redirect(url_for('login'))
-        if user.check_password(form.password.data):
-            flash('Invalid username or password')
+        else:
             app.logger.info('%s logged in successfully', user.username)
-            return redirect(url_for('home'))
-         else:
-            app.logger.info('%s failed to log in', user.username)
-        app.logger.warning('login successful: User logged in, {}'.format(form.username.data))
+            app.logger.warning('login successful: User logged in, {}'.format(form.username.data))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             #app.logger.info('login successful: User logged in, {}'.format(form.username.data))
             next_page = url_for('home')
-            app.logger.warning('login successful: User logged in, {}'.format(form.username.data))
             app.logger.setLevel(logging.INFO)
             flash('Login successful 1')
             app.logger.debug('Login successful 1')
         return redirect(next_page)
-    try:
-        app.logger.warning('login successful: User logged in, {}'.format(form.username.data))
-    except:
-        app.logger.error("@@@@@@@@@ @@@@@@@@@ @@@@@@@ error occured @@@@@@@ @@@@@@@ @@@@@@@@@")
-    finally:
-        app.logger.warning('login successful: User logged in')
-    app.logger.warning('login successful: User logged in, {}'.format(form.username.data))
     session["state"] = str(uuid.uuid4())
     auth_url = _build_auth_url(scopes=Config.SCOPE, state=session["state"])
     return render_template('login.html', title='Sign In', form=form, auth_url=auth_url)
@@ -127,11 +114,6 @@ def authorized():
         # Here, we'll use the admin username for anyone who is authenticated by MS
         user = User.query.filter_by(username="admin").first()
         login_user(user)
-        app.logger.setLevel(logging.INFO)
-        app.logger.debug('logged in successfully')
-        _save_cache(cache)
-    app.logger.setLevel(logging.INFO)
-    app.logger.debug('logged in successfully2')
     return redirect(url_for('home'))
 
 @app.route('/logout')
