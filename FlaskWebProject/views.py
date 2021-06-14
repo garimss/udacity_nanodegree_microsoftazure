@@ -80,7 +80,7 @@ def login():
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
-            app.logger.setLevel(logging.INFO)
+            print('login successful: User logged in, {}'.format(form.username.data))
             app.logger.info('%s logged in successfully', form.username.data)
             app.logger.info('%s logged in successfully', user.username)
             app.logger.info(' logged in successfully', form.username)
